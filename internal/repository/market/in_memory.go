@@ -27,28 +27,32 @@ func NewRepo(logger log.Logger) *InMemory {
 	now := time.Now()
 	markets := []model.Market{
 		{
-			ID:        uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a1"),
-			Name:      "BTC-USDT",
-			Enabled:   true,
-			DeletedAt: nil,
+			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a1"),
+			Name:         "BTC-USDT",
+			Enabled:      true,
+			AllowedRoles: []string{"TRAIDER"},
+			DeletedAt:    nil,
 		},
 		{
-			ID:        uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a2"),
-			Name:      "DOGE-USDT",
-			Enabled:   true,
-			DeletedAt: &now,
+			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a2"),
+			Name:         "DOGE-USDT",
+			Enabled:      true,
+			AllowedRoles: []string{"ADMIN"},
+			DeletedAt:    &now,
 		},
 		{
-			ID:        uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a3"),
-			Name:      "ETH-USDT",
-			Enabled:   false,
-			DeletedAt: nil,
+			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a3"),
+			Name:         "ETH-USDT",
+			Enabled:      false,
+			AllowedRoles: []string{"TRAIDER"},
+			DeletedAt:    nil,
 		},
 		{
-			ID:        uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a4"),
-			Name:      "SOL-USDT",
-			Enabled:   false,
-			DeletedAt: &now,
+			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a4"),
+			Name:         "SOL-USDT",
+			Enabled:      false,
+			AllowedRoles: []string{"TRAIDER"},
+			DeletedAt:    &now,
 		},
 	}
 
