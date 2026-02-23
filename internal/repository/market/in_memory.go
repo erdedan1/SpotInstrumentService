@@ -30,7 +30,7 @@ func NewRepo(logger log.Logger) *InMemory {
 			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a1"),
 			Name:         "BTC-USDT",
 			Enabled:      true,
-			AllowedRoles: []string{"USER_ROLE_TRAIDER"},
+			AllowedRoles: []string{"USER_ROLE_TRADER"},
 			DeletedAt:    nil,
 		},
 		{
@@ -44,14 +44,14 @@ func NewRepo(logger log.Logger) *InMemory {
 			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a3"),
 			Name:         "ETH-USDT",
 			Enabled:      false,
-			AllowedRoles: []string{"USER_ROLE_TRAIDER"},
+			AllowedRoles: []string{"USER_ROLE_TRADER"},
 			DeletedAt:    nil,
 		},
 		{
 			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a4"),
 			Name:         "SOL-USDT",
 			Enabled:      false,
-			AllowedRoles: []string{"USER_ROLE_TRAIDER"},
+			AllowedRoles: []string{"USER_ROLE_TRADER"},
 			DeletedAt:    &now,
 		},
 	}
