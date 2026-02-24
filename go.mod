@@ -3,8 +3,8 @@ module SpotInstrumentService
 go 1.26.0
 
 require (
-	github.com/erdedan1/protocol v1.0.1
-	github.com/erdedan1/shared v1.0.8
+	github.com/erdedan1/protocol v1.0.2
+	github.com/erdedan1/shared v1.0.14
 	github.com/go-playground/validator/v10 v10.30.1
 	github.com/google/uuid v1.6.0
 	github.com/ilyakaznacheev/cleanenv v1.5.0

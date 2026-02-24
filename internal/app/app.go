@@ -36,30 +36,32 @@ func New(cfg *config.Config) *App {
 
 	return &App{
 		cfg: cfg,
-		L:   logger.Layer("App"),
+		L:   logger,
 	}
 }
 
+const layer = "App"
+
 func (a *App) Start() error {
 	const method = "Start"
-	a.L.Info(method, "Start app")
+	a.L.Info(layer, method, "Start app")
 	repos := usecase.NewRepositories(marketRepo.NewRepo(a.L))
 	srvs := usecase.NewServices(marketSrv.NewService(*repos, a.L))
 
 	go func() {
 		if err := a.startGRPCServer(*srvs); err != nil {
-			a.L.Error(method, "failed to start grpc server", err)
+			a.L.Error(layer, method, "failed to start grpc server", err)
 			os.Exit(1)
 		}
 	}()
-	a.L.Info(method, "service work")
+	a.L.Info(layer, method, "service work")
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-	a.L.Info(method, "waiting for shutdown signal")
+	a.L.Info(layer, method, "waiting for shutdown signal")
 	<-quit
-	a.L.Info(method, "shutdown signal received")
+	a.L.Info(layer, method, "shutdown signal received")
 	a.stopGRPCServer()
-	a.L.Info(method, "service stopped gracefully")
+	a.L.Info(layer, method, "service stopped gracefully")
 	return nil
 }
 
@@ -80,13 +82,13 @@ func (a *App) startGRPCServer(usecase usecase.Services) error {
 
 	lis, err := net.Listen("tcp", a.cfg.GRPCServer.Address)
 	if err != nil {
-		a.L.Error(method, "failed to listenv", err)
+		a.L.Error(layer, method, "failed to listenv", err)
 		return err
 	}
 
 	err = grpcServer.Serve(lis)
 	if err != nil {
-		a.L.Error(method, "grpc serve error", err)
+		a.L.Error(layer, method, "grpc serve error", err)
 		return err
 	}
 	return nil
@@ -95,5 +97,5 @@ func (a *App) startGRPCServer(usecase usecase.Services) error {
 func (a *App) stopGRPCServer() {
 	const method = "stopGRPCServer"
 	a.grpcServer.GracefulStop()
-	a.L.Info(method, "grpc server stopped gracefully")
+	a.L.Info(layer, method, "grpc server stopped gracefully")
 }

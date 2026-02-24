@@ -6,6 +6,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/erdedan1/protocol v1.0.1 h1:KE7b9dCEscoYyxeJ4HLg/VZ0Rl3txbjPOunN0oPEBx0=
 github.com/erdedan1/protocol v1.0.1/go.mod h1:uFqwxUTzOW6vCCud5ct4r8JTteiEjhU1mLSlmKCC2x8=
+github.com/erdedan1/protocol v1.0.2 h1:/lbyD/ENPbwt+7/ebGmAT07oxYWzen2xyVGb1YJqWAU=
+github.com/erdedan1/protocol v1.0.2/go.mod h1:uFqwxUTzOW6vCCud5ct4r8JTteiEjhU1mLSlmKCC2x8=
 github.com/erdedan1/shared v1.0.3 h1:+bAqjMcyOa6sb7elDw7uIZetc9A/jrAgLLptlwq2Y1o=
 github.com/erdedan1/shared v1.0.3/go.mod h1:F1DWsCwISDyLwTd/yTLjwVbN+KcQUoQ5vtBWcWwtJAo=
 github.com/erdedan1/shared v1.0.4 h1:Yttw5DijeHonalsb49dKgr+HNNk4j2apvjbJDvUK1xw=
@@ -18,6 +20,8 @@ github.com/erdedan1/shared v1.0.7 h1:KbVG+KOk9lt9elciq3PUeMxCHoCEedAhAJGqaWLAtPI
 github.com/erdedan1/shared v1.0.7/go.mod h1:F1DWsCwISDyLwTd/yTLjwVbN+KcQUoQ5vtBWcWwtJAo=
 github.com/erdedan1/shared v1.0.8 h1:7ItfU4F4kPdb4PxsQZsZ6lSSdU7MAtSNeSoUtD+c7Sw=
 github.com/erdedan1/shared v1.0.8/go.mod h1:F1DWsCwISDyLwTd/yTLjwVbN+KcQUoQ5vtBWcWwtJAo=
+github.com/erdedan1/shared v1.0.14 h1:aKUEpDooAYEAWVfXVR1Cbp586scqhGWZou9MDj/KdlE=
+github.com/erdedan1/shared v1.0.14/go.mod h1:bFpqdsmndNsYAUThrNjnnvbeQ4MtEAJdTMrOdvRWTzU=
 github.com/gabriel-vasile/mimetype v1.4.12 h1:e9hWvmLYvtp846tLHam2o++qitpguFiYCKbn0w9jyqw=
 github.com/gabriel-vasile/mimetype v1.4.12/go.mod h1:d+9Oxyo1wTzWdyVUPMmXFvp4F9tea18J8ufA774AB3s=
 github.com/go-logr/logr v1.4.3 h1:CjnDlHq8ikf6E492q6eKboGOC0T8CDaOvkHCIg8idEI=

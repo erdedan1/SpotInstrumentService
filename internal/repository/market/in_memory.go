@@ -21,7 +21,7 @@ func NewRepo(logger log.Logger) *InMemory {
 	marketRepo := &InMemory{
 		Markets: make(map[uuid.UUID]model.Market),
 		mu:      &sync.RWMutex{},
-		l:       logger.Layer("Repository"),
+		l:       logger,
 	}
 
 	now := time.Now()
@@ -63,6 +63,8 @@ func NewRepo(logger log.Logger) *InMemory {
 	return marketRepo
 }
 
+const layer = "MarketInMemoryRepo"
+
 func (r *InMemory) ViewMarketsByRoles(ctx context.Context, userRoles []string) ([]model.Market, error) {
 	const method = "ViewMarketsByRoles"
 	r.mu.RLock()
@@ -87,7 +89,10 @@ func (r *InMemory) ViewMarketsByRoles(ctx context.Context, userRoles []string) (
 		}
 	}
 
-	r.l.Debug(method, "count_markets", len(result))
+	r.l.Debug(
+		layer, method,
+		"count_markets", len(result),
+	)
 
 	return result, nil
 }
@@ -98,6 +103,10 @@ func (r *InMemory) CreateMarket(ctx context.Context, id uuid.UUID, market model.
 	defer r.mu.Unlock()
 
 	r.Markets[id] = market
-	r.l.Debug(method, "Market created", id)
+	r.l.Debug(
+		layer, method,
+		"Market created",
+		"market_id", id,
+	)
 	return nil
 }
