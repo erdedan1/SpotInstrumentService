@@ -12,12 +12,11 @@ import (
 	marketSrv "SpotInstrumentService/internal/service/market"
 	"SpotInstrumentService/internal/usecase"
 
-	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen"
+	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen/v2"
 	"github.com/erdedan1/shared/interceptors/logger"
 	"github.com/erdedan1/shared/interceptors/recovery"
 	"github.com/erdedan1/shared/interceptors/request_id"
 	log "github.com/erdedan1/shared/logger"
-	"go.uber.org/zap"
 	"google.golang.org/grpc"
 )
 
@@ -67,12 +66,11 @@ func (a *App) Start() error {
 
 func (a *App) startGRPCServer(usecase usecase.Services) error {
 	const method = "startGRPCServer"
-	logZap, _ := zap.NewProduction()
 	grpcServer := grpc.NewServer(
 		grpc.ChainUnaryInterceptor(
 			request_id.XRequestIDServerInterceptor(),
-			logger.LoggerServerInterceptor(logZap),
-			recovery.RecoveryServerInterceptor(logZap),
+			logger.LoggerServerInterceptor(a.L),
+			recovery.RecoveryServerInterceptor(a.L),
 		),
 	)
 

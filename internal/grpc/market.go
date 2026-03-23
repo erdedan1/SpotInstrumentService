@@ -6,7 +6,7 @@ import (
 	"SpotInstrumentService/internal/usecase"
 	"context"
 
-	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen"
+	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen/v2"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

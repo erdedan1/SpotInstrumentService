@@ -6,9 +6,9 @@ import (
 	"SpotInstrumentService/internal/errs"
 	"SpotInstrumentService/internal/model"
 
-	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen"
-	m "github.com/erdedan1/shared/mapper"
+	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen/v2"
 	"github.com/google/uuid"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type ViewMarketsRequest struct {
@@ -45,12 +45,13 @@ func (vmr *ViewMarketsResponse) ModelToDto(market model.Market) *ViewMarketsResp
 }
 
 func (vmr *ViewMarketsResponse) DtoToProto() *pb.Market {
+
 	return &pb.Market{
-		Id:        m.ToUUIDProto(vmr.ID),
+		Id:        vmr.ID.String(),
 		Name:      vmr.Name,
 		Enabled:   vmr.Enabled,
-		CreatedAt: m.ToTimestampProto(vmr.CreatedAt),
-		UpdatedAt: m.ToTimestampProto(vmr.UpdateAt),
-		DeletedAt: m.ToTimestampProto(vmr.DeletedAt),
+		CreatedAt: timestamppb.New(*vmr.CreatedAt),
+		UpdatedAt: timestamppb.New(*vmr.UpdateAt),
+		DeletedAt: timestamppb.New(*vmr.DeletedAt),
 	}
 }
