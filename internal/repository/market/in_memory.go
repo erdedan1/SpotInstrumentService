@@ -91,6 +91,7 @@ func (r *InMemory) ViewMarketsByRoles(ctx context.Context, userRoles []string) (
 
 	r.l.Debug(
 		layer, method,
+		"success get markets by roles",
 		"count_markets", len(result),
 	)
 
