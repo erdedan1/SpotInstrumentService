@@ -30,7 +30,7 @@ type ViewMarketsResponse struct {
 	Name      string
 	Enabled   bool
 	CreatedAt *time.Time
-	UpdateAt  *time.Time
+	UpdatedAt *time.Time
 	DeletedAt *time.Time
 }
 
@@ -39,19 +39,30 @@ func (vmr *ViewMarketsResponse) ModelToDto(market model.Market) *ViewMarketsResp
 	vmr.Name = market.Name
 	vmr.Enabled = market.Enabled
 	vmr.CreatedAt = market.CreatedAt
-	vmr.UpdateAt = market.UpdateAt
+	vmr.UpdatedAt = market.UpdateAt
 	vmr.DeletedAt = market.DeletedAt
 	return vmr
 }
 
 func (vmr *ViewMarketsResponse) DtoToProto() *pb.Market {
 
-	return &pb.Market{
-		Id:        vmr.ID.String(),
-		Name:      vmr.Name,
-		Enabled:   vmr.Enabled,
-		CreatedAt: timestamppb.New(*vmr.CreatedAt),
-		UpdatedAt: timestamppb.New(*vmr.UpdateAt),
-		DeletedAt: timestamppb.New(*vmr.DeletedAt),
+	market := &pb.Market{
+		Id:      vmr.ID.String(),
+		Name:    vmr.Name,
+		Enabled: vmr.Enabled,
 	}
+
+	if vmr.CreatedAt != nil {
+		market.CreatedAt = timestamppb.New(*vmr.CreatedAt)
+	}
+
+	if vmr.UpdatedAt != nil {
+		market.UpdatedAt = timestamppb.New(*vmr.UpdatedAt)
+	}
+
+	if vmr.DeletedAt != nil {
+		market.DeletedAt = timestamppb.New(*vmr.DeletedAt)
+	}
+
+	return market
 }

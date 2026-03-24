@@ -30,28 +30,28 @@ func NewRepo(logger log.Logger) *InMemory {
 			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a1"),
 			Name:         "BTC-USDT",
 			Enabled:      true,
-			AllowedRoles: []string{"USER_ROLE_TRADER"},
+			AllowedRoles: []string{"TRADER"},
 			DeletedAt:    nil,
 		},
 		{
 			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a2"),
 			Name:         "DOGE-USDT",
 			Enabled:      true,
-			AllowedRoles: []string{"USER_ROLE_ADMIN"},
+			AllowedRoles: []string{"ADMIN"},
 			DeletedAt:    &now,
 		},
 		{
 			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a3"),
 			Name:         "ETH-USDT",
 			Enabled:      false,
-			AllowedRoles: []string{"USER_ROLE_TRADER"},
+			AllowedRoles: []string{"TRADER"},
 			DeletedAt:    nil,
 		},
 		{
 			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a4"),
 			Name:         "SOL-USDT",
 			Enabled:      false,
-			AllowedRoles: []string{"USER_ROLE_TRADER"},
+			AllowedRoles: []string{"TRADER"},
 			DeletedAt:    &now,
 		},
 	}
@@ -75,7 +75,6 @@ func (r *InMemory) ViewMarketsByRoles(ctx context.Context, userRoles []string) (
 		setRoles[role] = struct{}{}
 	}
 	var result []model.Market
-
 	for _, m := range r.Markets {
 		if !m.Enabled || m.DeletedAt != nil {
 			continue
