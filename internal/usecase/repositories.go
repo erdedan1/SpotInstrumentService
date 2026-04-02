@@ -8,7 +8,7 @@ import (
 )
 
 type InMemoryRepo interface {
-	ViewMarketsByRoles(ctx context.Context, userRoles []string) ([]model.Market, error)
+	ViewMarketsByRole(ctx context.Context, userRole string) ([]model.Market, error)
 	CreateMarket(ctx context.Context, id uuid.UUID, market model.Market) error
 }
 

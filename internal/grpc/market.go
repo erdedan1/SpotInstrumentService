@@ -6,7 +6,7 @@ import (
 	"SpotInstrumentService/internal/usecase"
 	"context"
 
-	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen/v2"
+	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen/v1"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -22,13 +22,13 @@ func NewService(srv usecase.Services) *Service {
 	}
 }
 
-func (s *Service) ViewMarketsByRoles(ctx context.Context, req *pb.ViewMarketsRequest) (*pb.ViewMarketsResponse, error) {
+func (s *Service) ViewMarketsByRole(ctx context.Context, req *pb.ViewMarketsRequest) (*pb.ViewMarketsResponse, error) {
 	dtoReq, err := dto.NewViewMarketsRequest(req)
 	if err != nil {
 		return nil, status.Error(codes.InvalidArgument, err.Error())
 	}
 
-	markets, err := s.srv.MarketService.ViewMarketsByRoles(ctx, dtoReq)
+	markets, err := s.srv.MarketService.ViewMarketsByRole(ctx, dtoReq)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}

@@ -27,7 +27,7 @@ func NewRepo(logger log.Logger) *InMemory {
 	now := time.Now()
 	markets := []model.Market{
 		{
-			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190a1"),
+			ID:           uuid.MustParse("0179803e-06f0-4369-b94f-14e26ec190B1"),
 			Name:         "BTC-USDT",
 			Enabled:      true,
 			AllowedRoles: []string{"TRADER"},
@@ -65,15 +65,11 @@ func NewRepo(logger log.Logger) *InMemory {
 
 const layer = "MarketInMemoryRepo"
 
-func (r *InMemory) ViewMarketsByRoles(ctx context.Context, userRoles []string) ([]model.Market, error) {
-	const method = "ViewMarketsByRoles"
+func (r *InMemory) ViewMarketsByRole(ctx context.Context, userRole string) ([]model.Market, error) {
+	const method = "ViewMarketsByRole"
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 
-	setRoles := make(map[string]struct{}, len(userRoles))
-	for _, role := range userRoles {
-		setRoles[role] = struct{}{}
-	}
 	var result []model.Market
 	for _, m := range r.Markets {
 		if !m.Enabled || m.DeletedAt != nil {
@@ -81,7 +77,7 @@ func (r *InMemory) ViewMarketsByRoles(ctx context.Context, userRoles []string) (
 		}
 
 		for _, ar := range m.AllowedRoles {
-			if _, ok := setRoles[ar]; ok {
+			if ar == userRole {
 				result = append(result, m)
 				break
 			}

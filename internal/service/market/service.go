@@ -22,9 +22,9 @@ func NewService(repo usecase.Repository, logger log.Logger) *Service {
 
 const layer = "MarketService"
 
-func (s *Service) ViewMarketsByRoles(ctx context.Context, req *dto.ViewMarketsRequest) ([]dto.ViewMarketsResponse, error) {
-	const method = "ViewMarketsByRoles"
-	markets, err := s.repo.InMemoryRepo.ViewMarketsByRoles(ctx, req.UserRoles)
+func (s *Service) ViewMarketsByRole(ctx context.Context, req *dto.ViewMarketsRequest) ([]dto.ViewMarketsResponse, error) {
+	const method = "ViewMarketsByRole"
+	markets, err := s.repo.InMemoryRepo.ViewMarketsByRole(ctx, req.UserRole)
 	if err != nil {
 		s.l.Error(layer, method, "get markets repo", err)
 		return nil, err

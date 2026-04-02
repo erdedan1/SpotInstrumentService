@@ -6,13 +6,14 @@ import (
 	"SpotInstrumentService/internal/errs"
 	"SpotInstrumentService/internal/model"
 
-	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen/v2"
+	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen/v1"
+	m "github.com/erdedan1/shared/mapper"
 	"github.com/google/uuid"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type ViewMarketsRequest struct {
-	UserRoles []string
+	UserRole string
 }
 
 func NewViewMarketsRequest(req *pb.ViewMarketsRequest) (*ViewMarketsRequest, error) {
@@ -21,7 +22,7 @@ func NewViewMarketsRequest(req *pb.ViewMarketsRequest) (*ViewMarketsRequest, err
 	}
 
 	return &ViewMarketsRequest{
-		UserRoles: req.UserRoles,
+		UserRole: m.UserRoleFromProtoSpot(req.UserRole),
 	}, nil
 }
 
@@ -47,9 +48,9 @@ func (vmr *ViewMarketsResponse) ModelToDto(market model.Market) *ViewMarketsResp
 func (vmr *ViewMarketsResponse) DtoToProto() *pb.Market {
 
 	market := &pb.Market{
-		Id:      vmr.ID.String(),
-		Name:    vmr.Name,
-		Enabled: vmr.Enabled,
+		MarketUuid: vmr.ID.String(),
+		Name:       vmr.Name,
+		Enabled:    vmr.Enabled,
 	}
 
 	if vmr.CreatedAt != nil {

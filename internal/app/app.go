@@ -12,7 +12,7 @@ import (
 	marketSrv "SpotInstrumentService/internal/service/market"
 	"SpotInstrumentService/internal/usecase"
 
-	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen/v2"
+	pb "github.com/erdedan1/protocol/proto/spot_instrument_service/gen/v1"
 	"github.com/erdedan1/shared/interceptors/logger"
 	"github.com/erdedan1/shared/interceptors/recovery"
 	"github.com/erdedan1/shared/interceptors/request_id"
